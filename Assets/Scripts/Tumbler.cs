@@ -15,6 +15,8 @@ public class Tumbler : MonoBehaviour
 		{
 			isActive = !isActive;
 		}
+		else
+			return;
 
 		if (isActive)
 			onActive.Invoke();

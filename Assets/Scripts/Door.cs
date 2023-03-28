@@ -5,6 +5,7 @@ public class Door : MonoBehaviour
     [SerializeField] float maxGlassY, minGlassY, glassSpeed = 0.2f;
     [SerializeField] Transform glass;
 	[SerializeField] HingeJoint joint;
+	[SerializeField] float openRot = -90;
 
 	float startRotation;
 
@@ -26,7 +27,7 @@ public class Door : MonoBehaviour
 		}
 		else
 		{
-			joint.limits = new JointLimits() { min = -90 };
+			joint.limits = new JointLimits() { min = openRot };
 		}
 	}
 }
