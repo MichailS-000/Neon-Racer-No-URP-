@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
 
 	[SerializeField] SteeringWheel steeringWheel;
 	[SerializeField] Transform rig;
+	[SerializeField] Transform env;
 
 	// Wheel Colliders
 	[SerializeField] private WheelCollider frontLeftWheelCollider, frontRightWheelCollider;
@@ -93,8 +94,7 @@ public class CarController : MonoBehaviour
 		Vector3 pos;
 		Quaternion rot; 
 		wheelCollider.GetWorldPose(out pos, out rot);
-		wheelTransform.rotation = rot;
-		wheelTransform.position = pos;
+		wheelTransform.SetPositionAndRotation(pos, rot);
 	}
 
 	public void Activate(bool val)
@@ -117,7 +117,7 @@ public class CarController : MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 			isControlling = false;
-			rig.parent = null;
+			rig.parent = env;
 		}
 	}
 }

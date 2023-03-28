@@ -4,12 +4,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Tumbler : MonoBehaviour
 {
-    public UnityEvent onPress;
-	[SerializeField] LayerMask mask;
+    public UnityEvent onActive;
+	public UnityEvent onPassive;
 
-	private void OnTriggerStay(Collider other)
+	bool isActive = false;
+
+	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("XRController"))
-			onPress.Invoke();
+		{
+			isActive = !isActive;
+		}
+
+		if (isActive)
+			onActive.Invoke();
+		else
+			onPassive.Invoke();
 	}
 }
