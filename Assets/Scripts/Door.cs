@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] float maxGlassY, minGlassY, glassSpeed = 0.2f;
+	[SerializeField] Vector3 glassStart, glassEnd;
+	[SerializeField] float glassSpeed = 0.2f;
     [SerializeField] Transform glass;
 	[SerializeField] HingeJoint joint;
 	[SerializeField] float openRot = -90;
 
 	float startRotation;
+	float value;
 
 	private void Start()
 	{
@@ -16,7 +18,8 @@ public class Door : MonoBehaviour
 
 	public void MoveGlass(float dir)
 	{
-        glass.Translate(new Vector3(0, glassSpeed * dir * Time.deltaTime, 0));
+		value += glassSpeed * dir * Time.deltaTime;
+		glass.position = Vector3.Lerp(glassStart, glassEnd, value);
 	}
 
     public void DoorState(bool open)

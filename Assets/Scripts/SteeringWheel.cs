@@ -8,7 +8,7 @@ public class SteeringWheel : MonoBehaviour
 
     public float GetAxis()
 	{
-        return Mathf.Abs(rot / 180f) > 0.05f ? rot / 180f : 0;
+        return rot / 180f;
 	}
 
     void FixedUpdate()
